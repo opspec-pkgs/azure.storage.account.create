@@ -1,0 +1,53 @@
+name: azure.storage.account.create
+description: creates an azure resource group (if it doesn't already exist)
+inputs:
+  subscriptionId:
+    string:
+      constraints: { minLength: 1 }
+      description: id of azure subscription
+  username:
+    string:
+      constraints: { format: email }
+      description: email address of azure account
+  password:
+    string:
+      constraints: { minLength: 1 }
+      description: password of azure account
+      isSecret: true
+  name:
+    string:
+      constraints: { minLength: 3, maxLength: 24, pattern: '^[a-z0-9]+$' }
+      description: name of the storage account
+  resourceGroup:
+    string:
+      constraints: { minLength: 1 }
+      description: resource group of provisioned storage account
+  sku:
+    string:
+      constraints: { enum: [ Premium_LRS, Standard_GRS, Standard_LRS, Standard_RAGRS, Standard_ZRS ] }
+      description: sku of provisioned storage account
+      default: Standard_RAGRS
+  kind:
+    string:
+      constraints: { enum: [ BlobStorage, Storage ] }
+      description: type of provisioned storage account
+      default: Storage
+  location:
+    string:
+      constraints: { minLength: 1 }
+      description: location of provisioned storage account
+      default: westus
+run:
+  container:
+    image: { ref: 'azuresdk/azure-cli-python:0.2.10' }
+    cmd: [ /cmd.sh ]
+    files: { /cmd.sh }
+    envVars:
+      subscriptionId:
+      username:
+      password:
+      name:
+      resourceGroup:
+      sku:
+      kind:
+      location:
