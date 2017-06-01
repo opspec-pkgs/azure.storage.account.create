@@ -1,4 +1,4 @@
-name: azure.storage.account.create
+name: github.com/opspec-pkgs/azure.storage.account.create
 description: creates an azure resource group (if it doesn't already exist)
 inputs:
   subscriptionId:
