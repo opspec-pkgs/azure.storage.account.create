@@ -25,11 +25,17 @@ run:
     pkg: { ref: github.com/opspec-pkgs/azure.storage.account.create#VERSION }
     inputs:
       subscriptionId:
-      username:
-      password:
+      loginId:
+      loginSecret:
       name:
       resourceGroup:
-      sku:
+      # begin optional args
+      customDomain:
       kind:
       location:
+      loginTenantId:
+      loginType:
+      sku:
+      tags:
+      # end optional args
 ```

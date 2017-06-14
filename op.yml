@@ -5,15 +5,14 @@ inputs:
     string:
       constraints: { minLength: 1 }
       description: id of azure subscription
-  username:
-    string:
-      constraints: { format: email }
-      description: email address of azure account
-  password:
+  loginId:
     string:
       constraints: { minLength: 1 }
-      description: password of azure account
-      isSecret: true
+      description: id of user, service principal, or app to login with
+  loginSecret:
+    string:
+      constraints: { minLength: 1 }
+      description: secret of user, service principal, or app to login with
   name:
     string:
       constraints: { minLength: 3, maxLength: 24, pattern: '^[a-z0-9]+$' }
@@ -22,11 +21,11 @@ inputs:
     string:
       constraints: { minLength: 1 }
       description: resource group of provisioned storage account
-  sku:
+  customDomain:
     string:
-      constraints: { enum: [ Premium_LRS, Standard_GRS, Standard_LRS, Standard_RAGRS, Standard_ZRS ] }
-      description: sku of provisioned storage account
-      default: Standard_RAGRS
+      constraints: { minLength: 1 }
+      description: custom domain for provisioned storage account
+      default: " "
   kind:
     string:
       constraints: { enum: [ BlobStorage, Storage ] }
@@ -37,6 +36,25 @@ inputs:
       constraints: { minLength: 1 }
       description: location of provisioned storage account
       default: westus
+  loginTenantId:
+    string:
+      constraints: { minLength: 1 }
+      description: tenant id of user, service principal, or app to login with
+      default: " "
+  loginType:
+    string:
+      constraints: { enum: [user, sp]}
+      description: type of login; 'user' (default) or 'sp' for service principal
+      default: user
+  sku:
+    string:
+      constraints: { enum: [ Premium_LRS, Standard_GRS, Standard_LRS, Standard_RAGRS, Standard_ZRS ] }
+      description: sku of provisioned storage account
+      default: Standard_RAGRS
+  tags:
+    string:
+      description: (space separated) tags (in key[=value] format) for provisioned storage account
+      default: " "
 run:
   container:
     image: { ref: 'azuresdk/azure-cli-python:0.2.10' }
@@ -44,10 +62,14 @@ run:
     files: { /cmd.sh }
     envVars:
       subscriptionId:
-      username:
-      password:
+      loginId:
+      loginSecret:
       name:
       resourceGroup:
-      sku:
+      customDomain:
       kind:
       location:
+      loginTenantId:
+      loginType:
+      sku:
+      tags:
