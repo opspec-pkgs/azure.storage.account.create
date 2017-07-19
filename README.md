@@ -20,24 +20,23 @@ opctl run github.com/opspec-pkgs/azure.storage.account.create#VERSION
 ## compose
 
 ```yaml
-run:
-  op:
-    pkg: { ref: github.com/opspec-pkgs/azure.storage.account.create#VERSION }
-    inputs:
-      subscriptionId:
-      loginId:
-      loginSecret:
-      name:
-      resourceGroup:
-      # begin optional args
-      customDomain:
-      kind:
-      location:
-      loginTenantId:
-      loginType:
-      sku:
-      tags:
-      # end optional args
+op:
+  pkg: { ref: github.com/opspec-pkgs/azure.storage.account.create#VERSION }
+  inputs:
+    subscriptionId:
+    loginId:
+    loginSecret:
+    name:
+    resourceGroup:
+    # begin optional args
+    customDomain:
+    kind:
+    location:
+    loginTenantId:
+    loginType:
+    sku:
+    tags:
+    # end optional args
 ```
 
 # Support
