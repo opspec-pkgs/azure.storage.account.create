@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/opspec-pkgs/azure.storage.account.create.svg?branch=master)](https://travis-ci.org/opspec-pkgs/azure.storage.account.create)
 
+<img src="icon.svg" alt="icon" height="100px">
 
 # Problem statement
 
@@ -29,11 +30,11 @@ opctl run github.com/opspec-pkgs/azure.storage.account.create#2.0.0
 op:
   pkg: { ref: github.com/opspec-pkgs/azure.storage.account.create#2.0.0 }
   inputs:
+    subscriptionId:
     loginId:
     loginSecret:
     name:
     resourceGroup:
-    subscriptionId:
     # params w/ default
     customDomain:
     kind:
